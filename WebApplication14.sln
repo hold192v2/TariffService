@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{B32B083A-A19A-4BC7-9C79-5C896C5FAE4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{9B5E8254-4899-4B0E-B5AB-FB463ED85922}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{859542FC-B6FA-4D7C-95C2-72EA50313371}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TariffService", "TariffService\TariffService.csproj", "{004C7AEA-D6CA-4E40-A78E-F989CBE868D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TariffService.Application", "TariffService.Application\TariffService.Application.csproj", "{D3D018C9-AB4F-4E72-B2AC-4452692BC090}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TariffService.Domain", "TariffService.Domain\TariffService.Domain.csproj", "{10BD6048-D89E-4023-BB9E-F3178B575B15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TariffService.Infrastructure", "TariffService.Infrastructure\TariffService.Infrastructure.csproj", "{DA487BCC-173B-47DF-863A-16899DCD3CBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{004C7AEA-D6CA-4E40-A78E-F989CBE868D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{004C7AEA-D6CA-4E40-A78E-F989CBE868D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{004C7AEA-D6CA-4E40-A78E-F989CBE868D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{004C7AEA-D6CA-4E40-A78E-F989CBE868D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3D018C9-AB4F-4E72-B2AC-4452692BC090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D018C9-AB4F-4E72-B2AC-4452692BC090}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D018C9-AB4F-4E72-B2AC-4452692BC090}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D018C9-AB4F-4E72-B2AC-4452692BC090}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10BD6048-D89E-4023-BB9E-F3178B575B15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10BD6048-D89E-4023-BB9E-F3178B575B15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10BD6048-D89E-4023-BB9E-F3178B575B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10BD6048-D89E-4023-BB9E-F3178B575B15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA487BCC-173B-47DF-863A-16899DCD3CBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA487BCC-173B-47DF-863A-16899DCD3CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA487BCC-173B-47DF-863A-16899DCD3CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA487BCC-173B-47DF-863A-16899DCD3CBF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D3D018C9-AB4F-4E72-B2AC-4452692BC090} = {B32B083A-A19A-4BC7-9C79-5C896C5FAE4A}
+		{10BD6048-D89E-4023-BB9E-F3178B575B15} = {9B5E8254-4899-4B0E-B5AB-FB463ED85922}
+		{DA487BCC-173B-47DF-863A-16899DCD3CBF} = {859542FC-B6FA-4D7C-95C2-72EA50313371}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10943654-52A3-4FF6-BEFE-7F5E6D14552E}
+	EndGlobalSection
+EndGlobal
