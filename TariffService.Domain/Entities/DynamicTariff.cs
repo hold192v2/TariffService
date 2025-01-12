@@ -17,5 +17,8 @@ namespace TariffService.Domain.Entities
         public bool UnlimVideo { get; set; }
         public bool UnlimSocials { get; set; }
         public bool UnlimMusic { get; set; }
+        public bool LongDistanceCall { get; set; }
+        public bool Status { get; set; }
+        
     }
 }

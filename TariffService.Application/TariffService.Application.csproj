@@ -7,13 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UseCases\CreateStaticTariff\Новая папка\**" />
+    <EmbeddedResource Remove="UseCases\CreateStaticTariff\Новая папка\**" />
+    <None Remove="UseCases\CreateStaticTariff\Новая папка\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TariffService.Domain\TariffService.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="DTOs\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="UseCases\" />
   </ItemGroup>
 
   <ItemGroup>

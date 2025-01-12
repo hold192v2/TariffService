@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TariffService.Domain.Entities;
+using TariffService.Domain.Requests;
 
 namespace TariffService.Domain.Interfaces
 {
     public interface IStaticTariffInterface : IBaseOperationRepository<StaticTariff>
     {
-        Task<StaticTariff?> GetByNumberId(int id);
-        Task<List<StaticTariff>> GetPaginationTariffs(int page, int pageSize);
+        Task<StaticTariff?> GetByNumberId(int id, CancellationToken cancellationToken);
+        Task<List<StaticTariff>> GetPaginationAndFilterTariffs(StaticTariffsRequest request, CancellationToken cancellationToken);
     }
 }
