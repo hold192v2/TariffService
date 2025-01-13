@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\TariffTypeGetter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TariffService.Domain\TariffService.Domain.csproj" />
   </ItemGroup>
 

@@ -25,7 +25,6 @@ namespace TariffService.Controllers
             return Ok(tariffs);
         }
 
-        [Authorize]
         [HttpPost("createStaticTariff")]
         public async Task<IActionResult> CreateStaticTariff([FromBody] CreateStaticTariffRequest request, CancellationToken cancellation)
         {

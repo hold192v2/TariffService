@@ -12,8 +12,8 @@ using TariffService.Infrastructure.Context;
 namespace TariffService.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250113081302_v1")]
-    partial class v1
+    [Migration("20250113103651_v4")]
+    partial class v4
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,9 +48,8 @@ namespace TariffService.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("TempUserId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<Guid>("TempUserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 

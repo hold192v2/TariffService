@@ -1,3 +1,4 @@
+using System.Diagnostics.Contracts;
 using TariffService.Domain.Entities;
 
 public class TariffCart : BaseEntity
@@ -6,6 +7,7 @@ public class TariffCart : BaseEntity
     public Guid TempUserId { get; set; }
     public string TariffId { get; set; }
     public string NewPhone { get; set; }
+
 
     public TariffCart(Guid tempUserId, string tariffId, string newPhone) 
     {

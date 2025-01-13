@@ -24,8 +24,8 @@ namespace TariffService.Controllers
             if (response is null) return BadRequest();
             return Ok(response.CartCount);
         }
-        [HttpGet("getTariffCart/{id}")]
-        public async Task<IActionResult> GetTariffCart(Guid userId)
+        [HttpGet("getTariffCart")]
+        public async Task<IActionResult> GetTariffCart([FromQuery]Guid userId)
         {
             try
             {
@@ -38,6 +38,16 @@ namespace TariffService.Controllers
                 return StatusCode(500, $"Failed to save phone number: {ex.Message}");
             }
         }
+        [HttpDelete("deleteByIdCard")]
+        public async Task<IActionResult> DeleteById([FromBody] Guid CardId)
+        {
 
+        }
+
+        [HttpDelete("deleteAll")]
+        public async Task<IActionResult> DeleteAll([FromBody] Guid CardId)
+        {
+
+        }
     }
 }

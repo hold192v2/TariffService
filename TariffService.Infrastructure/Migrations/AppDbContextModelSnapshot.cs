@@ -45,9 +45,8 @@ namespace TariffService.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("TempUserId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<Guid>("TempUserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 

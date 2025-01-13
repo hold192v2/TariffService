@@ -23,17 +23,21 @@ namespace TariffService.Application.UseCases.CartUseCases.SaveTariffCart
         }
         public async Task<Response> Handle(SaveTariffCartRequest request, CancellationToken cancellationToken)
         {
-            if (request.tariff is null)
+            try
             {
-                var newCart = new TariffCart(request.userId, request.staticTariffId, NewPhoneGenerator.GeneratePhoneNumber());
-                _tariffCart.Create(newCart);
+                if (request.tariff is null)
+                {
+                    var newCart = new TariffCart(request.userId, request.staticTariffId, NewPhoneGenerator.GeneratePhoneNumber());
+                    _tariffCart.Create(newCart);
+                }
+                else if (request.staticTariffId is null)
+                {
+                    var tariffId = DynamicTariffCoding.EncodeDynamicTariff(request.tariff);
+                    var newCart = new TariffCart(request.userId, tariffId, NewPhoneGenerator.GeneratePhoneNumber());
+                    _tariffCart.Create(newCart);
+                }
             }
-            else if (request.staticTariffId is null)
-            {
-                var tariffId = DynamicTariffCoding.EncodeDynamicTariff(request.tariff);
-                var newCart = new TariffCart(request.userId, tariffId, NewPhoneGenerator.GeneratePhoneNumber());
-            }
-            else
+            catch
             {
                 return new Response("Iternal server error", 500);
             }
