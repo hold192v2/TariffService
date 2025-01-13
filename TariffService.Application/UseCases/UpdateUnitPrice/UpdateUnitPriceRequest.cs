@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace TariffService.Application.UseCases.UpdateUnitPrice
 {
-    public record UpdateUnitPriceRequest()
+    public record UpdateUnitPriceRequest();
 }

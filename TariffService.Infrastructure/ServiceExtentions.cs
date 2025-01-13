@@ -23,6 +23,8 @@ namespace TariffService.Infrastructure
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IDynamicTariff, DynamicTariffRepository>();
             services.AddScoped<IStaticTariffInterface, StaticTariffRepository>();
+            services.AddScoped<ITariffCart, TariffCartRepository>();
+            services.AddScoped<IUnitPrice, UnitPriceRepository>();
 
         }
     }

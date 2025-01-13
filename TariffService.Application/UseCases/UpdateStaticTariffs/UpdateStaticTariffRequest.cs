@@ -8,7 +8,7 @@ using TariffService.Application.HadlerResponse;
 
 namespace TariffService.Application.UseCases.UpdateStaticTariffs
 {
-    public record UpdateStaticTariffRequest(int Id,
+    public record UpdateStaticTariffRequest(string Id,
     string Name,
     decimal Price,
     decimal Minutes,

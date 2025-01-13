@@ -12,10 +12,17 @@ namespace TariffService.Application.HadlerResponse
         public string Message { get; set; }
         public int Status { get; set; }
         public List<StaticTariff?> Data { get; set; }
+        public int CartCount { get; set; }
         public Response(string message, int status)
         {
             Message = message;
             Status = status;
+        }
+        public Response(string message, int status, int cartCount) 
+        {
+            Message = message;
+            Status = status;
+            CartCount = cartCount;
         }
         public Response(string message, int status, List<StaticTariff?> data)
         {

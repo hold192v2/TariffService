@@ -20,6 +20,8 @@ namespace TariffService.Infrastructure.Context
         }
         public DbSet<DynamicTariff> DynamicTariffs { get; set; }
         public DbSet<StaticTariff> StaticTariffs { get; set; }
+        public DbSet<TariffCart> TariffCarts { get; set; }
+        public DbSet<UnitPrice> UnitPrice {  get; set; }
     }
 
 
@@ -28,7 +30,7 @@ namespace TariffService.Infrastructure.Context
         public AppDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=localhost;Username=postgres;Password=second");//переделать
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=TariffSerice;Username=postgres;Password=second");//переделать
 
             return new AppDbContext(optionsBuilder.Options);
         }

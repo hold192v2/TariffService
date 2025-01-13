@@ -31,19 +31,19 @@ namespace TariffService.Controllers
         {
             var response = await _mediator.Send(request, cancellation);
             if (response is null) return BadRequest();
-            return Ok(response);
+            return Ok();
         }
         [HttpPut("updateStaticTariff")]
         public async Task<IActionResult> UpdateStaticTariff([FromBody] UpdateStaticTariffRequest request, CancellationToken cancellation)
         {
             var response = await _mediator.Send(request, cancellation);
             if (response is null) return BadRequest();
-            return Ok(response);
+            return Ok();
         }
         [HttpPut("updateUnitPrice")]
         public async Task<IActionResult> UpdateUnitPrice([FromBody] UpdateUnitPriceRequest request, CancellationToken cancellation)
         {
-
+            return Ok();
         }
     }
 }

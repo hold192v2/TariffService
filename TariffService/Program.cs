@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TariffService.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
+using TariffService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -89,4 +91,10 @@ static void CreateDatabase(WebApplication app)
     var serviceScope = app.Services.CreateScope();
     var dataContext = serviceScope.ServiceProvider.GetService<AppDbContext>();
     dataContext?.Database.EnsureCreated();
+    if (!dataContext.DynamicTariffs.Any())
+    {
+        var tariffs = DynamicTariffGenerate.GenerateTariffs(); // Генерация всех тарифов
+        dataContext.DynamicTariffs.AddRange(tariffs); // Добавление тарифов в DbContext
+        dataContext.SaveChanges(); // Сохранение изменений в базе данных
+    }
 }

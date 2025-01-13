@@ -22,6 +22,38 @@ namespace TariffService.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("TariffCart", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("DateCreated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTimeOffset>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTimeOffset>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("NewPhone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("TariffId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("TempUserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TariffCarts");
+                });
+
             modelBuilder.Entity("TariffService.Domain.Entities.DynamicTariff", b =>
                 {
                     b.Property<string>("Id")
@@ -74,11 +106,9 @@ namespace TariffService.Infrastructure.Migrations
 
             modelBuilder.Entity("TariffService.Domain.Entities.StaticTariff", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
@@ -127,6 +157,47 @@ namespace TariffService.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("StaticTariffs");
+                });
+
+            modelBuilder.Entity("TariffService.Domain.Entities.UnitPrice", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("DateCreated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTimeOffset>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTimeOffset>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<decimal>("GigabytePrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<bool>("LongDistanceCallPrice")
+                        .HasColumnType("boolean");
+
+                    b.Property<decimal>("MinutePrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("SmsPrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<bool>("UnlimMusicPrice")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("UnlimSocialsPrice")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("UnlimVideoPrice")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UnitPrice");
                 });
 #pragma warning restore 612, 618
         }
