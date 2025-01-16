@@ -44,7 +44,7 @@ namespace TariffService.Services
                                         {
                                             Id = DynamicTariffCoding.EncodeDynamicTariff(dto),
                                             Name = "Личный",
-                                            Price = CalculatePrice(dto), // Укажите свою логику расчета цены
+                                            Price = CalculatePrice(dto), 
                                             Gigabytes = gb,
                                             Minutes = min,
                                             Sms = sm,
@@ -73,7 +73,7 @@ namespace TariffService.Services
 
             // Разница в параметрах
             decimal additionalPrice = 0;
-            additionalPrice += (tariff.Gigabytes - 5) * 6; // 1 ГБ = 5 рублей
+            additionalPrice += (tariff.Gigabytes - 5) * 6; // 1 ГБ = 6 рублей
             additionalPrice += (tariff.Minutes - 250) * 0.6m; // 1 минута = 0.6 рублей
             additionalPrice += (tariff.Sms - 50) * 0.6m; // 1 смс = 0.6 рублей
 

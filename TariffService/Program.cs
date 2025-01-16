@@ -8,6 +8,8 @@ using System.Text;
 using TariffService.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using TariffService.Services;
+using MassTransit;
+using TariffService.Application.RabbitMq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,28 @@ builder.Services.AddControllers();
 builder.Services.ConfigurePresistanceApp(builder.Configuration);
 builder.Services.ConfigureApplicationApp();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddMassTransit(x =>
+{
+    x.SetKebabCaseEndpointNameFormatter();
+    x.AddConsumer<UserCartConsumer>();
+    x.AddConsumer<UserTarifConsumer>();
+
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host("amqps://akmeanzg:TMOCQxQAEWZjfE0Y7wH5v0TN_XTQ9Xfv@mouse.rmq5.cloudamqp.com/akmeanzg");
+        cfg.ReceiveEndpoint("queue-name-tarif", x =>
+        {
+            x.ConfigureConsumer<UserCartConsumer>(context);
+            x.ConfigureConsumer<UserTarifConsumer>(context);
+            x.Bind("exchange-name-tarif");
+        });
+
+        cfg.ClearSerialization();
+        cfg.UseRawJsonSerializer();
+
+    });
+
+});
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
