@@ -28,12 +28,19 @@ builder.Services.AddMassTransit(x =>
     x.UsingRabbitMq((context, cfg) =>
     {
         cfg.Host("amqps://akmeanzg:TMOCQxQAEWZjfE0Y7wH5v0TN_XTQ9Xfv@mouse.rmq5.cloudamqp.com/akmeanzg");
-        cfg.ReceiveEndpoint("queue-name-tarif", x =>
+        cfg.ReceiveEndpoint("Cart", x =>
         {
             x.ConfigureConsumer<UserCartConsumer>(context);
+            x.Bind("exchange-name-cart");
+            //≈сли не будет работать, то смотреть в эту сторону
+        });
+        cfg.ReceiveEndpoint("Tariff", x =>
+        {
             x.ConfigureConsumer<UserTarifConsumer>(context);
             x.Bind("exchange-name-tarif");
+            //≈сли не будет работать, то смотреть в эту сторону
         });
+
 
         cfg.ClearSerialization();
         cfg.UseRawJsonSerializer();

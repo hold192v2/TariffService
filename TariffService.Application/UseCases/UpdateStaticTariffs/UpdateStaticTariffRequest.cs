@@ -19,6 +19,7 @@ namespace TariffService.Application.UseCases.UpdateStaticTariffs
     bool UnlimMusic,
     bool LongDistanceCall,
     bool Status,
-    string ImageUrl) :
+    string ImageUrl,
+    string ImageUrl2) :
         IRequest<Response>;
 }

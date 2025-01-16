@@ -36,7 +36,7 @@ namespace TariffService.Infrastructure.Repositories
         /// </summary>
         /// <param name="id">Идентификатор StaticTariff.</param>
         /// <returns>StaticTariff или null, если не найден.</returns>
-        public async Task<StaticTariff?> GetByNumberId(string id, CancellationToken cancellationToken)
+        public async Task<StaticTariff?> GetByNumberId(string id)
         {
             return  _context.StaticTariffs.FirstOrDefault(x => x.Id.ToString() == id);
         }
@@ -94,6 +94,11 @@ namespace TariffService.Infrastructure.Repositories
 
             // Возврат отфильтрованного и пагинированного списка тарифов.
             return items;
+        }
+
+        public async Task<List<StaticTariff>> GetTrueTariffs()
+        {
+            return await _context.StaticTariffs.Where(x => x.Status == true).ToListAsync();
         }
     }
 }

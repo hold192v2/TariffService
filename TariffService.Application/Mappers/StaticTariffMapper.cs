@@ -15,7 +15,9 @@ namespace TariffService.Application.Mappers
         {
             CreateMap<CreateStaticTariffRequest, StaticTariff>()
             .ForMember(dest => dest.Id, opt => opt.Ignore()) // Игнорируем Id при маппинге
-            .ForMember(dest => dest.ImageUrl, opt => opt.Ignore()).ReverseMap();
+            .ForMember(dest => dest.ImageUrl, opt => opt.Ignore())
+            .ForMember(dest => dest.ImageUrl2, opt => opt.Ignore())
+            .ReverseMap();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiceAbonents.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace TariffService.Domain.Interfaces
 {
     public interface ITariffCart : IBaseOperationRepository<TariffCart>
     {
-        public Task<List<TariffCartDTO>> GetAllUserTariffCart(Guid userId);
+        public Task<List<TransferDataAbonentDto>> GetAllUserTariffCart(Guid userId);
         public Task<int> GetCartCount(Guid userId);
         public Task<List<CreateCartDTO>> GetAllUserTariff(Guid userId, Guid temporaryUserId);
         public Task DeleteById(Guid cardId, Guid userId);

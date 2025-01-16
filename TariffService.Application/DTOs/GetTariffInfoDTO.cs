@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TariffService.Application.DTOs
 {
-    public class GetAllUserCartDTO
+    public class GetTariffInfoDTO
     {
-        public Guid TemporaryId { get; set; }
+        public string TariffId { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace TariffService.Services
                                         var tariff = new DynamicTariff
                                         {
                                             Id = DynamicTariffCoding.EncodeDynamicTariff(dto),
-                                            Name = "Личный",
+                                            Name = "Мой тариф",
                                             Price = CalculatePrice(dto), 
                                             Gigabytes = gb,
                                             Minutes = min,

@@ -11,7 +11,8 @@ namespace TariffService.Domain.Interfaces
 {
     public interface IStaticTariffInterface : IBaseOperationRepository<StaticTariff>
     {
-        Task<StaticTariff?> GetByNumberId(string id, CancellationToken cancellationToken);
+        Task<StaticTariff?> GetByNumberId(string id);
         Task<List<StaticTariff>> GetPaginationAndFilterTariffs(StaticTariffsRequest request, CancellationToken cancellationToken);
+        Task<List<StaticTariff>> GetTrueTariffs();
     }
 }

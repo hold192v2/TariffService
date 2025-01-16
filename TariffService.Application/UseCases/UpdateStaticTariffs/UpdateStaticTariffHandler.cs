@@ -23,7 +23,7 @@ namespace TariffService.Application.UseCases.UpdateStaticTariffs
         }
         public async Task<Response> Handle(UpdateStaticTariffRequest request, CancellationToken cancellationToken)
         {
-            var tariff = await _staticInterface.GetByNumberId(request.Id, cancellationToken);
+            var tariff = await _staticInterface.GetByNumberId(request.Id);
             if (tariff == null)
             {
                 return new Response("Internal server error", 500); // Сущность не найдена
@@ -39,6 +39,7 @@ namespace TariffService.Application.UseCases.UpdateStaticTariffs
             tariff.LongDistanceCall = request.LongDistanceCall;
             tariff.Status = request.Status;
             tariff.ImageUrl = request.ImageUrl;
+            tariff.ImageUrl2 = request.ImageUrl2;
 
             await _unitOfWork.Commit(cancellationToken);
             return new Response("OK", 200);

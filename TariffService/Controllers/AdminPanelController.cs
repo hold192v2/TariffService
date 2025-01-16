@@ -5,6 +5,7 @@ using TariffService.Application.UseCases.CreateStaticTariff;
 using TariffService.Application.UseCases.GetStaticTarrifs;
 using TariffService.Application.UseCases.UpdateStaticTariffs;
 using TariffService.Application.UseCases.UpdateUnitPrice;
+using TariffService.Domain.Interfaces;
 
 namespace TariffService.Controllers
 {
@@ -13,9 +14,11 @@ namespace TariffService.Controllers
     public class AdminPanelController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public AdminPanelController(IMediator mediator)
+        private readonly IStaticTariffInterface _staticTariff;
+        public AdminPanelController(IMediator mediator, IStaticTariffInterface staticTariff)
         {
             _mediator = mediator;
+            _staticTariff = staticTariff;
         }
 
         [HttpGet("getStatic")]
@@ -38,6 +41,12 @@ namespace TariffService.Controllers
             var response = await _mediator.Send(request, cancellation);
             if (response is null) return BadRequest();
             return Ok();
+        }
+        [HttpGet("getStaticTrue")]
+        public async Task<IActionResult> GetStaticTariffsTrue()
+        {
+            var tariffs = _staticTariff.GetTrueTariffs();
+            return Ok(tariffs);
         }
         [HttpPut("updateUnitPrice")]
         public async Task<IActionResult> UpdateUnitPrice([FromBody] UpdateUnitPriceRequest request, CancellationToken cancellation)

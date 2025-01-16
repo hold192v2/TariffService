@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TariffService.Domain.Entities;
 
 namespace ServiceAbonents.Dtos
 {
-    public class ListTransferDataAbonentDto
+    public class IdForCartDto
     {
-        public List<TransferDataAbonentDto> tariffCartDTOs {get; set;}
+        public Guid TemporaryId { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using ServiceAbonents.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using TariffService.Domain.Interfaces;
 
 namespace TariffService.Application.RabbitMq
 {
-    public class UserCartConsumer : IConsumer<GetAllUserCartDTO>
+    public class UserCartConsumer : IConsumer<IdForCartDto>
     {
         private readonly ITariffCart _tariffCart;
 
@@ -18,7 +19,7 @@ namespace TariffService.Application.RabbitMq
             _tariffCart = tariffCart;
         }
 
-        public async Task Consume(ConsumeContext<GetAllUserCartDTO> context)
+        public async Task Consume(ConsumeContext<IdForCartDto> context)
         {
             var temporaryId = context.Message.TemporaryId;
 
@@ -28,12 +29,13 @@ namespace TariffService.Application.RabbitMq
             if (listCart != null)
             {
                 var transerCartList = new ListTransferDataAbonentDto() { tariffCartDTOs = listCart};
-                await context.RespondAsync<ListTransferDataAbonentDto>(listCart);
+                await context.RespondAsync(listCart);
             }
             else
             {
                 await context.RespondAsync<ListTransferDataAbonentDto>(null);
             }
         }
+
     }
 }

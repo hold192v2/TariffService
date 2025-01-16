@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using ServiceAbonents.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,17 +24,17 @@ namespace TariffService.Infrastructure.Repositories
             _appDbContext = appDbContext;
             _mapper = mapper;
         }
-        public async Task<List<TariffCartDTO>> GetAllUserTariffCart(Guid userId)
+        public async Task<List<TransferDataAbonentDto>> GetAllUserTariffCart(Guid userId)
         {
             var tariffCarts = await _appDbContext.TariffCarts.Where(tariff => tariff.TempUserId == userId).ToListAsync();
-            var list = new List<TariffCartDTO>();
+            var list = new List<TransferDataAbonentDto>();
             foreach (var cart in tariffCarts)
             {
                 if (GetTariffType(cart.TariffId) == "Static")
                 {
                     var staticTariff = await _appDbContext.StaticTariffs.FirstOrDefaultAsync(x => x.Id == Guid.Parse(cart.TariffId));
                     var tariff = _mapper.Map<Tariff>(staticTariff);
-                    var cartDto = new TariffCartDTO()
+                    var cartDto = new TransferDataAbonentDto()
                     {
                         UserId = cart.TempUserId,
                         CardId = cart.Id,
@@ -46,7 +47,7 @@ namespace TariffService.Infrastructure.Repositories
                 {
                     var dynamicTariff = await _appDbContext.DynamicTariffs.FirstOrDefaultAsync(x => x.Id == cart.TariffId);
                     var tariff = _mapper.Map<Tariff>(dynamicTariff);
-                    var cartDto = new TariffCartDTO()
+                    var cartDto = new TransferDataAbonentDto()
                     {
                         UserId = cart.TempUserId,
                         CardId = cart.Id,

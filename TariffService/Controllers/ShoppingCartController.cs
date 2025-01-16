@@ -39,7 +39,7 @@ namespace TariffService.Controllers
             }
         }
         [HttpDelete("deleteByIdCard")]
-        public async Task<IActionResult> DeleteById([FromBody] Guid CardId, [FromBody] Guid UserId)
+        public async Task<IActionResult> DeleteById([FromBody] Guid CardId, [FromQuery] Guid UserId)
         {
             await _tariffCart.DeleteById(CardId, UserId);
             return Ok();
