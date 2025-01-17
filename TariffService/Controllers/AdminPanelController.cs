@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TariffService.Application.DTOs;
 using TariffService.Application.UseCases.CreateStaticTariff;
 using TariffService.Application.UseCases.GetStaticTarrifs;
 using TariffService.Application.UseCases.UpdateStaticTariffs;
@@ -53,5 +54,12 @@ namespace TariffService.Controllers
         {
             return Ok();
         }
+        [HttpGet("getStaticbyId")]
+        public async Task<IActionResult> GetStaticTariffbyId([FromQuery] GetByIdStaticReqest request)
+        {
+            var tariff = await _staticTariff.GetByNumberId(request.staticId.ToString());
+            return Ok(tariff);
+        }
+
     }
 }
