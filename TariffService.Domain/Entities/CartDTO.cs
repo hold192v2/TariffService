@@ -7,8 +7,13 @@ using TariffService.Domain.Entities;
 
 namespace ServiceAbonents.Dtos
 {
-    public class ListTransferDataAbonentDto
+    public class CartDTO
     {
-        public List<TransferDataAbonentDto> listData { get; set;}
+        public Guid UserId { get; set; }
+        public Guid CardId { get; set; }
+        public Tariff Tarriff { get; set; }
+        public string NewPhone { get; set; }
+
+
     }
 }

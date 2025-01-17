@@ -12,8 +12,8 @@ using TariffService.Infrastructure.Context;
 namespace TariffService.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250113103651_v4")]
-    partial class v4
+    [Migration("20250117005209_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -125,6 +125,10 @@ namespace TariffService.Infrastructure.Migrations
                         .HasColumnType("numeric");
 
                     b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ImageUrl2")
                         .IsRequired()
                         .HasColumnType("text");
 

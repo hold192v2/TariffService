@@ -11,9 +11,9 @@ namespace TariffService.Domain.Interfaces
 {
     public interface ITariffCart : IBaseOperationRepository<TariffCart>
     {
-        public Task<List<TransferDataAbonentDto>> GetAllUserTariffCart(Guid userId);
+        public Task<List<CartDTO>> GetAllUserTariffCart(Guid userId);
         public Task<int> GetCartCount(Guid userId);
-        public Task<List<CreateCartDTO>> GetAllUserTariff(Guid userId, Guid temporaryUserId);
+        public Task<List<TransferDataAbonentDto>> GetAllUserTariff(Guid temporaryUserId);
         public Task DeleteById(Guid cardId, Guid userId);
         public Task DeleteAll(Guid userId);
     }

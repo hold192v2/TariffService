@@ -13,6 +13,10 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["TariffService/TariffService.csproj", "TariffService/"]
+COPY ["TariffService.Application/Project.Application.csproj", "TariffService.Application/"]
+COPY ["TariffService.Domain/Project.Domain.csproj", "Project.Domain/"]
+COPY ["TariffService.Infrastructure/Project.Infrastructure.csproj", "Project.Infrastructure/"]
+
 RUN dotnet restore "./TariffService/TariffService.csproj"
 COPY . .
 WORKDIR "/src/TariffService"

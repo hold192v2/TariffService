@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TariffService.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class v4 : Migration
+    public partial class v1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -41,16 +41,17 @@ namespace TariffService.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    Price = table.Column<decimal>(type: "numeric", nullable: false),
-                    Minutes = table.Column<decimal>(type: "numeric", nullable: false),
                     Gigabytes = table.Column<decimal>(type: "numeric", nullable: false),
+                    Minutes = table.Column<decimal>(type: "numeric", nullable: false),
                     Sms = table.Column<decimal>(type: "numeric", nullable: false),
-                    UnlimVideo = table.Column<bool>(type: "boolean", nullable: false),
                     UnlimSocials = table.Column<bool>(type: "boolean", nullable: false),
+                    UnlimVideo = table.Column<bool>(type: "boolean", nullable: false),
                     UnlimMusic = table.Column<bool>(type: "boolean", nullable: false),
                     LongDistanceCall = table.Column<bool>(type: "boolean", nullable: false),
+                    Price = table.Column<decimal>(type: "numeric", nullable: false),
                     Status = table.Column<bool>(type: "boolean", nullable: false),
                     ImageUrl = table.Column<string>(type: "text", nullable: false),
+                    ImageUrl2 = table.Column<string>(type: "text", nullable: false),
                     DateCreated = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     DateUpdated = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     DateDeleted = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)

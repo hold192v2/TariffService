@@ -24,12 +24,12 @@ namespace TariffService.Application.RabbitMq
             var temporaryId = context.Message.TemporaryId;
 
             // Ищем пользователя по номеру телефона
-            var listCart = await _tariffCart.GetAllUserTariffCart(temporaryId);
+            var listCart = await _tariffCart.GetAllUserTariff(temporaryId);
 
             if (listCart != null)
             {
-                var transerCartList = new ListTransferDataAbonentDto() { tariffCartDTOs = listCart};
-                await context.RespondAsync(listCart);
+                var transerCartList = new ListTransferDataAbonentDto() { listData = listCart};
+                await context.RespondAsync(transerCartList);
             }
             else
             {

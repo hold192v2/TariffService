@@ -125,6 +125,10 @@ namespace TariffService.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("ImageUrl2")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<bool>("LongDistanceCall")
                         .HasColumnType("boolean");
 

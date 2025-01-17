@@ -45,7 +45,7 @@ namespace TariffService.Controllers
         [HttpGet("getStaticTrue")]
         public async Task<IActionResult> GetStaticTariffsTrue()
         {
-            var tariffs = _staticTariff.GetTrueTariffs();
+            var tariffs = await _staticTariff.GetTrueTariffs();
             return Ok(tariffs);
         }
         [HttpPut("updateUnitPrice")]

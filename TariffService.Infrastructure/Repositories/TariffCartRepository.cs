@@ -24,17 +24,17 @@ namespace TariffService.Infrastructure.Repositories
             _appDbContext = appDbContext;
             _mapper = mapper;
         }
-        public async Task<List<TransferDataAbonentDto>> GetAllUserTariffCart(Guid userId)
+        public async Task<List<CartDTO>> GetAllUserTariffCart(Guid userId)
         {
             var tariffCarts = await _appDbContext.TariffCarts.Where(tariff => tariff.TempUserId == userId).ToListAsync();
-            var list = new List<TransferDataAbonentDto>();
+            var list = new List<CartDTO>();
             foreach (var cart in tariffCarts)
             {
                 if (GetTariffType(cart.TariffId) == "Static")
                 {
                     var staticTariff = await _appDbContext.StaticTariffs.FirstOrDefaultAsync(x => x.Id == Guid.Parse(cart.TariffId));
                     var tariff = _mapper.Map<Tariff>(staticTariff);
-                    var cartDto = new TransferDataAbonentDto()
+                    var cartDto = new CartDTO()
                     {
                         UserId = cart.TempUserId,
                         CardId = cart.Id,
@@ -47,7 +47,7 @@ namespace TariffService.Infrastructure.Repositories
                 {
                     var dynamicTariff = await _appDbContext.DynamicTariffs.FirstOrDefaultAsync(x => x.Id == cart.TariffId);
                     var tariff = _mapper.Map<Tariff>(dynamicTariff);
-                    var cartDto = new TransferDataAbonentDto()
+                    var cartDto = new CartDTO()
                     {
                         UserId = cart.TempUserId,
                         CardId = cart.Id,
@@ -60,24 +60,25 @@ namespace TariffService.Infrastructure.Repositories
             return list;
         }
 
-        public async Task<List<CreateCartDTO>> GetAllUserTariff(Guid userId, Guid temporaryUserId)
+        public async Task<List<TransferDataAbonentDto>> GetAllUserTariff(Guid temporaryUserId)
         {
-            var tariffCarts = await _appDbContext.TariffCarts.Where(tariff => tariff.TempUserId == userId).ToListAsync();
+            var tariffCarts = await _appDbContext.TariffCarts.Where(tariff => tariff.TempUserId == temporaryUserId).ToListAsync();
 
-            var list = new List<CreateCartDTO>();
+            var list = new List<TransferDataAbonentDto>();
             foreach (var cart in tariffCarts)
             {
                 if (GetTariffType(cart.TariffId) == "Static")
                 {
                     var staticTariff = await _appDbContext.StaticTariffs.FirstOrDefaultAsync(x => x.Id == Guid.Parse(cart.TariffId));
                     var tariff = _mapper.Map<Tariff>(staticTariff);
-                    var cartDto = new CreateCartDTO()
+                    var tariffDto = _mapper.Map<TariffDto>(tariff);
+                    var cartDto = new TransferDataAbonentDto()
                     {
 
-                        AbonentId = userId,
+                        PhoneNumber = cart.NewPhone,
                         TariffId = cart.TariffId,
                         TariffCost = tariff.Price,
-                        PhoneNumber = cart.NewPhone,
+                        dataTariff = tariffDto,
                     };
                     list.Add(cartDto);
                 }
@@ -85,12 +86,13 @@ namespace TariffService.Infrastructure.Repositories
                 {
                     var dynamicTariff = await _appDbContext.DynamicTariffs.FirstOrDefaultAsync(x => x.Id == cart.TariffId);
                     var tariff = _mapper.Map<Tariff>(dynamicTariff);
-                    var cartDto = new CreateCartDTO()
+                    var tariffDto = _mapper.Map<TariffDto>(tariff);
+                    var cartDto = new TransferDataAbonentDto()
                     {
-                        AbonentId = userId,
+                        PhoneNumber = cart.NewPhone,
                         TariffId = cart.TariffId,
                         TariffCost = tariff.Price,
-                        PhoneNumber = cart.NewPhone,
+                        dataTariff = tariffDto,
                     };
                     list.Add(cartDto);
                 }
